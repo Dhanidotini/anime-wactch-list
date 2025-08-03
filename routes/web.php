@@ -16,3 +16,4 @@ use App\Http\Controllers\HomeController;
 Route::get("/", [HomeController::class, "index"])->name("home");
 Route::get("/anime/{anime}", [AnimeController::class, "show"])->name("anime.show");
 Route::get("/anime/{anime}/episode/{episode}", [EpisodeController::class, 'show'])->name('episode.show');
+Route::get("/animes", [AnimeController::class, 'index'])->name('anime.index');

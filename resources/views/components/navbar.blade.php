@@ -6,8 +6,8 @@
     </div>
     <ul class=" flex gap-2 font-semibold">
         <li>
-            <a href="#">
-                Home
+            <a href="{{ route('anime.index') }}">
+                All Anime
             </a>
         </li>
     </ul>
