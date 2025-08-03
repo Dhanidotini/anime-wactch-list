@@ -1,8 +1,9 @@
 <x-layouts.app>
     <section class="lg:px-48 w-full h-full">
-        <div class=" text-sm text-gray-400 mt-2 mb-4 mx-2">
-            Anime > <a class="hover:text-white hover:underline"
-                href="{{ route('anime.show', $episode->anime->slug) }}">{{ $episode->anime->title }}</a> > Episode
+        <div class=" text-sm text-gray-400 mt-2 mb-4 mx-2 [&_a]:hover:underline [&_a]:hover:text-white">
+            <a href="{{ route('home') }}">Home</a>
+            > Anime >
+            <a href="{{ route('anime.show', $episode->anime->slug) }}">{{ $episode->anime->title }}</a> > Episode
             {{ $episode->episode }}
         </div>
         <div class="mx-2 pb-2">

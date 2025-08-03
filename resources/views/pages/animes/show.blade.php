@@ -1,6 +1,13 @@
 <x-layouts.app>
     <article class="flex flex-col gap-2 w-full md:grid md:grid-cols-4 md:gap-2 lg:px-48">
         <section class="w-full col-span-4 xl:col-span-3">
+            <div>
+                <div class=" text-sm text-gray-400 mt-2 mb-4 mx-2 [&_a]:hover:underline [&_a]:hover:text-white">
+                    <a href="{{ route('home') }}">Home</a>
+                    > Anime >
+                    {{ $anime->title }}</a>
+                </div>
+            </div>
             <div class="md:flex">
                 <div
                     class="pt-10 pb-16 bg-cover flex flex-col items-center text-center w-full bg-blend-darken drop-shadow-2xl md:bg-none md:items-start md:text-left md:pt-0 md:grow-0 md:w-70 md:h-fit md:bg-gray-800 md:rounded-md md:pb-3 md:shadow-lg bg-[url({{ '/storage/' . $anime->image->attachment }})]">
