@@ -14,29 +14,44 @@
                     <h4 class="mx-2 font-bold text-md">Details</h4>
                     <hr class="">
                     <table
-                        class="table text-sm w-full [&_tr]:even:bg-gray-700 [&_th]:h-9 [&_th]:p-2 [&_th]:text-left [&_th]:w-30 [&_td]:text-sm [&_td]:p-2 **:align-top">
+                        class="table text-sm w-full [&_tr]:even:bg-gray-700 [&_th]:h-9 [&_th]:p-2 [&_th]:text-left [&_th]:w-30 [&_td]:text-sm [&_td]:p-2 **:align-top [&_a]:text-blue-400/80 [&_a]:hover:underline">
                         <tbody>
                             <tr>
                                 <th>Title English</th>
-                                <td>{!! $anime->title_eng ?? '<span class="text-gray-500">null</span>' !!}</td>
+                                <td>{!! $anime->title_eng ?? '<span class="text-gray-500">No have yet.</span>' !!}</td>
                             </tr>
                             <tr>
                                 <th>Status</th>
-                                <td>{!! $anime->status->name ?? '<span class="text-gray-500">null</span>' !!}</td>
+                                <td>{!! $anime->status->name ?? '<span class="text-gray-500">No have yet.</span>' !!}</td>
                             </tr>
                             <tr>
                                 <th>Episodes</th>
-                                <td>{!! $anime->episodes->count() ?? '<span class="text-gray-500">null</span>' !!}</td>
+                                <td>
+                                    @if ($anime->episodes->count() != 0)
+                                        {{ $anime->episodes->count() }}
+                                    @else
+                                        <span class="text-gray-500">No have yet.</span>
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <th>Premiered</th>
-                                <td>{!! $anime->premiered->name ?? '<span class="text-gray-500">null</span>' !!}</td>
+                                <td>
+                                    @isset($anime->premiered)
+                                        {{ $anime->premiered->name }}
+                                        @isset($anime->airing_date_start)
+                                            {{ $anime->airing_date_start->year }}
+                                        @endisset
+                                    @else
+                                        <span class="text-gray-500">No have yet.</span>
+                                    @endisset
+                                </td>
                             </tr>
                             <tr>
                                 <th>Airing Date</th>
                                 <td>
                                     @if (is_null($anime->airing_date_start) && is_null($anime->airing_date_end))
-                                        <span class="text-gray-500">null</span>
+                                        <span class="text-gray-500">No have yet.</span>
                                     @else
                                         {{ $anime->airing_date_start->format('d M Y') }}
                                         {{ isset($anime->airing_date_end) ? 'to' : '' }}
@@ -46,12 +61,17 @@
                             </tr>
                             <tr>
                                 <th>Type</th>
-                                <td>{!! $anime->type->name ?? '<span class="text-gray-500">null</span>' !!}
+                                <td>
+                                    @isset($anime->type)
+                                        <a href="{{ route('anime.index') }}">{{ $anime->type->name }}</a>
+                                    @else
+                                        <span class="text-gray-500">No have yet.</span>
+                                    @endisset
                                 </td>
                             </tr>
                             <tr>
                                 <th>Source</th>
-                                <td>{!! $anime->source->name ?? '<span class="text-gray-500">null</span>' !!}</td>
+                                <td>{!! $anime->source->name ?? '<span class="text-gray-500">No have yet.</span>' !!}</td>
                             </tr>
                             <tr>
                                 <th>Studios</th>
@@ -59,7 +79,7 @@
                                     @forelse ($anime->studios as $item)
                                         {{ $item->name }}{{ $loop->last ? '' : ',' }}
                                     @empty
-                                        <span class="text-gray-500">null</span>
+                                        <span class="text-gray-500">No have yet.</span>
                                     @endforelse
                                 </td>
                             </tr>
@@ -69,7 +89,7 @@
                                     @forelse ($anime->producers as $item)
                                         {{ $item->name }}{{ $loop->last ? '' : ',' }}
                                     @empty
-                                        <span class="text-gray-500">null</span>
+                                        <span class="text-gray-500">No have yet.</span>
                                     @endforelse
                                 </td>
                             </tr>
@@ -80,7 +100,7 @@
                                         {{ $item->name }}
                                         {{ $loop->last ? '' : ',' }}
                                     @empty
-                                        <span class="text-gray-500">null</span>
+                                        <span class="text-gray-500">No have yet.</span>
                                     @endforelse
                                 </td>
                             </tr>
@@ -90,7 +110,7 @@
                                     @forelse ($anime->genres as $item)
                                         {{ $item->name }}{{ $loop->last ? '' : ',' }}
                                     @empty
-                                        <span class="text-gray-500">null</span>
+                                        <span class="text-gray-500">No have yet.</span>
                                     @endforelse
                                 </td>
                             </tr>
@@ -100,7 +120,7 @@
                                     @forelse ($anime->demographics as $item)
                                         {{ $item->name }}{{ $loop->last ? '' : ',' }}
                                     @empty
-                                        <span class="text-gray-500">null</span>
+                                        <span class="text-gray-500">No have yet.</span>
                                     @endforelse
                                 </td>
                             </tr>
@@ -110,7 +130,7 @@
                                     @forelse ($anime->themes as $item)
                                         {{ $item->name }}{{ $loop->last ? '' : ',' }}
                                     @empty
-                                        <span class="text-gray-500">null</span>
+                                        <span class="text-gray-500">No have yet.</span>
                                     @endforelse
                                 </td>
                             </tr>
@@ -120,7 +140,7 @@
                                     @forelse ($anime->explicits as $item)
                                         {{ $item->name }}{{ $loop->last ? '' : ',' }}
                                     @empty
-                                        <span class="text-gray-500">null</span>
+                                        <span class="text-gray-500">No have yet.</span>
                                     @endforelse
                                 </td>
                             </tr>
