@@ -29,5 +29,5 @@ Route::get("/anime/{anime}/episode/{episode}", [EpisodeController::class, 'show'
 // Genres
 Route::get("/genres", [GenreController::class, 'index'])
     ->name('genre.index');
-Route::get("/genre/{genre:slug}", [GenreController::class, 'showGenre'])
+Route::get("/genre/{genre:slug}", [GenreController::class, 'show'])
     ->name('genre.show');

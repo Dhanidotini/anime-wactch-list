@@ -18,7 +18,7 @@ class GenreController extends Controller
         return view("pages.genres.index", compact(['genres', 'themes', 'demographics', 'explicits']));
     }
 
-    public function showGenre(string $genre)
+    public function show(string $genre)
     {
         $genre = Genre::findBySlug($genre);
         $genres = Genre::genre()->get();
