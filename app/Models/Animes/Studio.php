@@ -10,31 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Studio extends Model
 {
-    /** @use HasFactory<\Database\Factories\CompanyFactory> */
-    use HasFactory;
-    protected $fillable = [
-        'name',
-        'native_name',
-        'description',
-        'links_related',
-        'slug',
-        'established_date',
-    ];
-
-    protected function casts()
-    {
-        return [
-            'links_related' => 'array',
-        ];
-    }
-
-    protected function dates()
-    {
-        return [
-            'establised_date'
-        ];
-    }
-
+    protected $fillable = ['name', 'slug'];
     public function animes(): BelongsToMany
     {
         return $this->belongsToMany(Anime::class);

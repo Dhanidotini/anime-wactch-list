@@ -81,7 +81,8 @@
                                 <th>Studios</th>
                                 <td>
                                     @forelse ($anime->studios as $item)
-                                        {{ $item->name }}{{ $loop->last ? '' : ',' }}
+                                        <a href="{{ route('company.show', $item->slug) }}">
+                                            {{ $item->name }}</a>{{ $loop->last ? '' : ',' }}
                                     @empty
                                         <span class="text-gray-500">No have yet.</span>
                                     @endforelse
@@ -91,7 +92,8 @@
                                 <th>Producers</th>
                                 <td>
                                     @forelse ($anime->producers as $item)
-                                        {{ $item->name }}{{ $loop->last ? '' : ',' }}
+                                        <a href="{{ route('company.show', $item->slug) }}">
+                                            {{ $item->name }}</a>{{ $loop->last ? '' : ',' }}
                                     @empty
                                         <span class="text-gray-500">No have yet.</span>
                                     @endforelse
@@ -101,8 +103,8 @@
                                 <th>Licensors</th>
                                 <td>
                                     @forelse ($anime->licensors as $item)
-                                        {{ $item->name }}
-                                        {{ $loop->last ? '' : ',' }}
+                                        <a href="{{ route('company.show', $item->slug) }}">
+                                            {{ $item->name }}</a>{{ $loop->last ? '' : ',' }}
                                     @empty
                                         <span class="text-gray-500">No have yet.</span>
                                     @endforelse

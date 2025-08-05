@@ -3,6 +3,7 @@
 namespace App\Models\Animes;
 
 use App\Models\Anime;
+use App\Enums\GenreType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -57,5 +58,18 @@ class Company extends Model
             'company_id',
             'anime_id'
         );
+    }
+    public function allAnimes()
+    {
+        $allAnimeId = collect()
+            ->merge($this->animesAsStudio()
+                ->pluck('animes.id'))
+            ->merge($this->animesAsLicensor()
+                ->pluck('animes.id'))
+            ->merge($this->animesAsProducer()
+                ->pluck('animes.id'))
+            ->unique();
+
+        return Anime::whereIn('id', $allAnimeId)->latest();
     }
 }

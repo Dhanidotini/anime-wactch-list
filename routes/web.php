@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AnimeController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\StudioController;
 use App\Models\Anime;
 use App\Enums\GenreType;
 use App\Models\Animes\Company;
@@ -31,3 +33,9 @@ Route::get("/genres", [GenreController::class, 'index'])
     ->name('genre.index');
 Route::get("/genre/{genre:slug}", [GenreController::class, 'show'])
     ->name('genre.show');
+
+// Studios
+Route::get("/companies", [CompanyController::class, 'index'])
+    ->name('company.index');
+Route::get("/company/{company:slug}", [CompanyController::class, 'show'])
+    ->name('company.show');
