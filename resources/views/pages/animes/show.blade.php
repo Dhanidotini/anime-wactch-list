@@ -1,7 +1,11 @@
 <x-layouts.app>
     <article class="flex flex-col gap-2 w-full md:grid md:grid-cols-4 md:gap-2 lg:px-48">
         <section class="w-full col-span-4 xl:col-span-3">
-            <x-partials.breadcrumb :$anime />
+            <x-partials.breadcrumb>
+                <a href="{{ route('anime.index') }}">Anime</a>
+                >
+                {{ $anime->title }}
+            </x-partials.breadcrumb>
             <div class="md:flex">
                 <div
                     class="pt-10 pb-16 bg-cover flex flex-col items-center text-center w-full bg-blend-darken drop-shadow-2xl md:bg-none md:items-start md:text-left md:pt-0 md:grow-0 md:w-70 md:h-fit md:bg-gray-800 md:rounded-md md:pb-3 md:shadow-lg bg-[url({{ '/storage/' . $anime->image->attachment }})]">
@@ -108,17 +112,8 @@
                                 <th>Genres</th>
                                 <td>
                                     @forelse ($anime->genres as $item)
-                                        {{ $item->name }}{{ $loop->last ? '' : ',' }}
-                                    @empty
-                                        <span class="text-gray-500">No have yet.</span>
-                                    @endforelse
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Demographics</th>
-                                <td>
-                                    @forelse ($anime->demographics as $item)
-                                        {{ $item->name }}{{ $loop->last ? '' : ',' }}
+                                        <a href="{{ route('genre.show', $item->slug) }}">
+                                            {{ $item->name }}</a>{{ $loop->last ? '' : ',' }}
                                     @empty
                                         <span class="text-gray-500">No have yet.</span>
                                     @endforelse
@@ -128,52 +123,62 @@
                                 <th>Themes</th>
                                 <td>
                                     @forelse ($anime->themes as $item)
-                                        {{ $item->name }}{{ $loop->last ? '' : ',' }}
-                                    @empty
+                                        <a href="{{ route('genre.show', $item->slug) }}">
+                                        {{ $item->name }}</a>{{ $loop->last ? '' : ',' }} @empty
                                         <span class="text-gray-500">No have yet.</span>
                                     @endforelse
                                 </td>
                             </tr>
                             <tr>
-                                <th>Explicits</th>
+                                <th>Demographics</th>
                                 <td>
-                                    @forelse ($anime->explicits as $item)
-                                        {{ $item->name }}{{ $loop->last ? '' : ',' }}
-                                    @empty
+                                    @forelse ($anime->demographics as $item)
+                                        <a href="{{ route('genre.show', $item->slug) }}">
+                                        {{ $item->name }}</a>{{ $loop->last ? '' : ',' }} @empty
                                         <span class="text-gray-500">No have yet.</span>
                                     @endforelse
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        @empty($anime->explicits)
+                            <tr>
+                                <th>Explicits</th>
+                                <td>
+                                    @foreach ($anime->explicits as $item)
+                                        {{ $item->name }}{{ $loop->last ? '' : ',' }}
+                                    @endforeach
+                                </td>
+                            </tr>
+                        @endempty
+                    </tbody>
+                </table>
             </div>
-            <div class="grow-0">
-                <h4 class="px-2 pt-1 font-bold">Synopsis</h4>
-                <hr>
-                <p class="m-2 font-light text-sm">
-                    {{ $anime->synopsis }}
-                </p>
-            </div>
-            <div class="grow-0">
-                <h4 class="px-2 pt-1 font-bold">Episodes</h4>
-                <hr>
-                <ul>
-                    @forelse ($anime->episodes as $item)
-                        <li class="w-full odd:bg-gray-700 p-3 text-sm" key='{{ $loop->index }}'>
-                            {{ $item->episode }}.
-                            <a
-                                href="{{ route('episode.show', ['anime' => $anime->slug, 'episode' => $item->episode]) }}">
-                                {{ $item->title }}
-                            </a>
-                        </li>
-                    @empty
-                        <span>No episode yet.</span>
-                    @endforelse
-                </ul>
-            </div>
-        </section>
         </div>
-        <x-layouts.sections.genres :$genres />
-    </article>
+        <div class="grow-0">
+            <h4 class="px-2 pt-1 font-bold">Synopsis</h4>
+            <hr>
+            <p class="m-2 font-light text-sm">
+                {{ $anime->synopsis }}
+            </p>
+        </div>
+        <div class="grow-0">
+            <h4 class="px-2 pt-1 font-bold">Episodes</h4>
+            <hr>
+            <ul class="px-2">
+                @forelse ($anime->episodes as $item)
+                    <li class="w-full odd:bg-gray-700 p-3 text-sm" key='{{ $loop->index }}'>
+                        {{ $item->episode }}.
+                        <a
+                            href="{{ route('episode.show', ['anime' => $anime->slug, 'episode' => $item->episode]) }}">
+                            {{ $item->title }}
+                        </a>
+                    </li>
+                @empty
+                    <span>No episode yet.</span>
+                @endforelse
+            </ul>
+        </div>
+    </section>
+    </div>
+    <x-layouts.sections.genres :$genres />
+</article>
 </x-layouts.app>

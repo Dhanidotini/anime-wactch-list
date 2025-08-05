@@ -11,7 +11,7 @@ class Genres extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public $genres)
+    public function __construct(public $genres, public string $name = 'Genres')
     {
         //
     }

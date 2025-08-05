@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\EpisodeController;
+use App\Http\Controllers\GenreController;
 use App\Models\Anime;
 use App\Enums\GenreType;
 use App\Models\Animes\Company;
@@ -14,6 +15,19 @@ use App\Http\Controllers\HomeController;
 // });
 
 Route::get("/", [HomeController::class, "index"])->name("home");
-Route::get("/anime/{anime}", [AnimeController::class, "show"])->name("anime.show");
-Route::get("/anime/{anime}/episode/{episode}", [EpisodeController::class, 'show'])->name('episode.show');
-Route::get("/animes", [AnimeController::class, 'index'])->name('anime.index');
+
+// Animes
+Route::get("/anime/{anime}", [AnimeController::class, "show"])
+    ->name("anime.show");
+Route::get("/animes", [AnimeController::class, 'index'])
+    ->name('anime.index');
+
+// Anime Episode
+Route::get("/anime/{anime}/episode/{episode}", [EpisodeController::class, 'show'])
+    ->name('episode.show');
+
+// Genres
+Route::get("/genres", [GenreController::class, 'index'])
+    ->name('genre.index');
+Route::get("/genre/{genre:slug}", [GenreController::class, 'showGenre'])
+    ->name('genre.show');

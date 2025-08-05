@@ -7,7 +7,12 @@
     <ul class=" flex gap-2 font-semibold">
         <li>
             <a href="{{ route('anime.index') }}">
-                All Anime
+                Animes
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('genre.index') }}">
+                Genres
             </a>
         </li>
     </ul>

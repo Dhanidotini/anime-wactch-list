@@ -11,3 +11,7 @@
     --font-inter: Inter, sans-serif;
     --font-poppins: Poppins, sans-serif;
 }
+
+hr {
+    @apply text-gray-400;
+}
