@@ -25,7 +25,8 @@ class AnimeController extends Controller
     public function show(string $slug): View
     {
         $anime = Anime::where('slug', $slug)->first();
+        $episodes = $anime->episodes->where('airing', true)->all();
         $genres = Genre::genre()->get();
-        return view('pages.animes.show', compact(['anime', 'genres']));
+        return view('pages.animes.show', compact(['anime', 'genres', 'episodes']));
     }
 }

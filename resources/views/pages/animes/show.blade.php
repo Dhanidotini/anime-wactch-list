@@ -164,15 +164,30 @@
                 </p>
             </div>
             <div class="grow-0">
-                <h4 class="px-2 pt-1 font-bold">Episodes</h4>
+                <div class="grid grid-cols-5 grid-rows-1 px-3 pt-1">
+                    <h4 class="font-bold">Episodes</h4>
+                    <h4 class="font-bold col-start-5">Release Date</h4>
+                </div>
                 <hr>
-                <ul class="px-2">
-                    @forelse ($anime->episodes as $item)
-                        <li class="w-full odd:bg-gray-700 p-3 text-sm" key='{{ $loop->index }}'>
-                            {{ $item->episode }}.
-                            <a
+                <ul>
+                    @forelse ($episodes as $item)
+                        <li class="odd:bg-gray-700 group" key='{{ $loop->index }}'>
+                            <a class="w-full p-3 rounded border border-transparent text-sm grid grid-cols-5 grid-rows-1 group-hover:border-amber-500"
                                 href="{{ route('episode.show', ['anime' => $anime->slug, 'episode' => $item->episode]) }}">
-                                {{ $item->title }}
+                                <div class="col-span-3 flex gap-1 items-start">
+                                    @if ($anime->type->name !== 'Movie')
+                                        {{ $item->episode }}.
+                                    @endif
+                                    <span
+                                        class="text-gray-200 group-hover:underline group-hover:text-amber-500">{{ $item->title }}</span>
+                                </div>
+                                <div class="col-start-5 px-1">
+                                    @if ($item->release_date->diffInYears(now()) <= 1)
+                                        {{ $item->release_date->diffForHumans() }}
+                                    @else
+                                        {{ $item->release_date->locale('id')->format('d F Y') }}
+                                    @endif
+                                </div>
                             </a>
                         </li>
                     @empty
