@@ -25,7 +25,7 @@ class Episode extends Model
         'episode' => 'integer',
         'length' => 'integer',
         'airing' => 'boolean',
-        'release_date' => 'datetime:d M Y'
+        'release_date' => 'datetime'
     ];
     public function anime(): BelongsTo
     {
