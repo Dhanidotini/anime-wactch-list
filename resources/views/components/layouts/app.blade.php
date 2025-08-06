@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ config('app.name') }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,10 +13,12 @@
     @vite(['resources/css/app.css'])
 </head>
 
-<body class=" bg-gray-800 text-white font-inter">
-    <x-navbar></x-navbar>
-    <x-header></x-header>
-    {{ $slot }}
+<body class="bg-gray-800 text-white font-inter subpixel-antialiased">
+    <x-navbar />
+    <div class="min-h-screen">
+        {{ $slot }}
+    </div>
+    <x-footer />
 </body>
 
 </html>

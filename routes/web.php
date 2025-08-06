@@ -17,8 +17,10 @@ Route::get("/", [HomeController::class, "index"])->name("home");
 // Animes
 Route::get("/anime/{anime}", [AnimeController::class, "show"])
     ->name("anime.show");
-Route::get("/animes", [AnimeController::class, 'index'])
+Route::get("/animes/tvs", [AnimeController::class, 'index'])
     ->name('anime.index');
+Route::get("/animes/movies", [AnimeController::class, 'movie'])
+    ->name('anime.movie');
 
 // Anime Episode
 Route::get("/anime/{anime}/episode/{episode}", [EpisodeController::class, 'show'])

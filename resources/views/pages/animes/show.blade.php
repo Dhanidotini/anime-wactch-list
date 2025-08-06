@@ -142,46 +142,45 @@
                                     @endforelse
                                 </td>
                             </tr>
-                        @empty($anime->explicits)
-                            <tr>
-                                <th>Explicits</th>
-                                <td>
-                                    @foreach ($anime->explicits as $item)
-                                        {{ $item->name }}{{ $loop->last ? '' : ',' }}
-                                    @endforeach
-                                </td>
-                            </tr>
-                        @endempty
-                    </tbody>
-                </table>
+                            @isset($anime->explicits)
+                                <tr>
+                                    <th>Explicits</th>
+                                    <td>
+                                        @foreach ($anime->explicits as $item)
+                                            {{ $item->name }}{{ $loop->last ? '' : ',' }}
+                                        @endforeach
+                                    </td>
+                                </tr>
+                            @endisset
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="grow-0">
-            <h4 class="px-2 pt-1 font-bold">Synopsis</h4>
-            <hr>
-            <p class="m-2 font-light text-sm">
-                {{ $anime->synopsis }}
-            </p>
-        </div>
-        <div class="grow-0">
-            <h4 class="px-2 pt-1 font-bold">Episodes</h4>
-            <hr>
-            <ul class="px-2">
-                @forelse ($anime->episodes as $item)
-                    <li class="w-full odd:bg-gray-700 p-3 text-sm" key='{{ $loop->index }}'>
-                        {{ $item->episode }}.
-                        <a
-                            href="{{ route('episode.show', ['anime' => $anime->slug, 'episode' => $item->episode]) }}">
-                            {{ $item->title }}
-                        </a>
-                    </li>
-                @empty
-                    <span>No episode yet.</span>
-                @endforelse
-            </ul>
-        </div>
-    </section>
-    </div>
-    <x-layouts.sections.genres :$genres />
-</article>
+            <div class="grow-0">
+                <h4 class="px-2 pt-1 font-bold">Synopsis</h4>
+                <hr>
+                <p class="m-2 font-light text-sm">
+                    {{ $anime->synopsis }}
+                </p>
+            </div>
+            <div class="grow-0">
+                <h4 class="px-2 pt-1 font-bold">Episodes</h4>
+                <hr>
+                <ul class="px-2">
+                    @forelse ($anime->episodes as $item)
+                        <li class="w-full odd:bg-gray-700 p-3 text-sm" key='{{ $loop->index }}'>
+                            {{ $item->episode }}.
+                            <a
+                                href="{{ route('episode.show', ['anime' => $anime->slug, 'episode' => $item->episode]) }}">
+                                {{ $item->title }}
+                            </a>
+                        </li>
+                    @empty
+                        <span>No episode yet.</span>
+                    @endforelse
+                </ul>
+            </div>
+        </section>
+        <x-layouts.sections.genres :$genres />
+    </article>
 </x-layouts.app>

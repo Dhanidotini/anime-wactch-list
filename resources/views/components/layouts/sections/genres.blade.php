@@ -3,7 +3,7 @@
     $isGenrePage = Route::is('genre.index');
 @endphp
 
-<section class="lg:block lg:w-full lg:col-span-full xl:col-span-1">
+<section class="col-span-full lg:block lg:w-full xl:col-span-1">
     <div>
         <h2 class="px-2 font-bold text-md">{{ $name ?? 'Genres' }}</h2>
         <hr>
