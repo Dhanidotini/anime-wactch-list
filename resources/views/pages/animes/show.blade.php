@@ -28,29 +28,31 @@
                                 <th>Status</th>
                                 <td>{!! $anime->status->name ?? '<span class="text-gray-500">No have yet.</span>' !!}</td>
                             </tr>
-                            <tr>
-                                <th>Episodes</th>
-                                <td>
-                                    @if ($anime->episodes->count() != 0)
-                                        {{ $anime->episodes->count() }}
-                                    @else
-                                        <span class="text-gray-500">No have yet.</span>
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Premiered</th>
-                                <td>
-                                    @isset($anime->premiered)
-                                        {{ $anime->premiered->name }}
-                                        @isset($anime->airing_date_start)
-                                            {{ $anime->airing_date_start->year }}
+                            @if ($anime->type->name !== 'Movie')
+                                <tr>
+                                    <th>Episodes</th>
+                                    <td>
+                                        @if ($anime->episodes->count() != 0)
+                                            {{ $anime->episodes->count() }}
+                                        @else
+                                            <span class="text-gray-500">No have yet.</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Premiered</th>
+                                    <td>
+                                        @isset($anime->premiered)
+                                            {{ $anime->premiered->name }}
+                                            @isset($anime->airing_date_start)
+                                                {{ $anime->airing_date_start->year }}
+                                            @endisset
+                                        @else
+                                            <span class="text-gray-500">No have yet.</span>
                                         @endisset
-                                    @else
-                                        <span class="text-gray-500">No have yet.</span>
-                                    @endisset
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @endif
                             <tr>
                                 <th>Airing Date</th>
                                 <td>
@@ -58,8 +60,7 @@
                                         <span class="text-gray-500">No have yet.</span>
                                     @else
                                         {{ $anime->airing_date_start->format('d M Y') }}
-                                        {{ isset($anime->airing_date_end) ? 'to' : '' }}
-                                        {{ $anime->airing_date_end->format('d M Y') }}
+                                        {{ isset($anime->airing_date_end) ? 'to ' . $anime->airing_date_end->format('d M Y') : '' }}
                                     @endif
                                 </td>
                             </tr>
