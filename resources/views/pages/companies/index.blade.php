@@ -12,7 +12,7 @@
                     class=
                     'm-2 grid grid-cols-2 gap-1 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-4 xl:grid-cols-6'>
                     @foreach ($companies as $item)
-                        <a class="border border-gray-400 hover:border-amber-600 rounded-lg p-1 hover:bg-amber-600 text-center hover:underline"
+                        <a class="border-2 border-gray-500 hover:border-amber-500 rounded-lg p-0.5 hover:text-amber-500 hover:underline text-center"
                             href="{{ route('company.show', $item->slug) }}">
                             <x-partials.span>
                                 {{ $item->name }}
