@@ -13,7 +13,7 @@
             'lg:grid-cols-3' => !$isGenrePage,
         ])>
             @foreach ($genres as $item)
-                <a class="border border-gray-400 hover:border-amber-600 rounded-lg p-1 hover:bg-amber-600 text-center hover:underline"
+                <a class="border-2 border-gray-500 hover:border-amber-500 rounded-lg p-0.5 hover:text-amber-500 text-center hover:underline"
                     href="{{ route('genre.show', $item->slug) }}">
                     <x-partials.span>
                         {{ $item->name }}

@@ -12,7 +12,7 @@
             <ol
                 class="invisible group-hover:visible absolute bg-gray-900 [&_li]:before:content-['>'] rounded-lg pl-2 pr-4 py-2 flex flex-col gap-2">
                 <li class="relative">
-                    <a href="{{ route('anime.index') }}">TVs</a>
+                    <a href="{{ route('anime.index') }}">All Anime</a>
                 </li>
                 <li class="relative">
                     <a href="{{ route('anime.movie') }}">Movies</a>

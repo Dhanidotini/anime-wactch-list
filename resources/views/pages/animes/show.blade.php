@@ -18,7 +18,7 @@
                     <h4 class="mx-2 font-bold text-md">Details</h4>
                     <hr class="">
                     <table
-                        class="table text-sm w-full [&_tr]:even:bg-gray-700 [&_th]:h-9 [&_th]:p-2 [&_th]:text-left [&_th]:w-30 [&_td]:text-sm [&_td]:p-2 **:align-top [&_a]:text-blue-400/80 [&_a]:hover:underline">
+                        class="table text-sm w-full [&_tr]:even:bg-gray-700 [&_th]:h-9 [&_th]:p-2 [&_th]:text-left [&_th]:w-30 [&_td]:text-sm [&_td]:p-2 **:align-top [&_a]:text-blue-400/80 [&_a]:hover:underline [&_a]:hover:text-amber-500">
                         <tbody>
                             <tr>
                                 <th>Title English</th>

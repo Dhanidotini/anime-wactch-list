@@ -12,15 +12,16 @@ class AnimeController extends Controller
 {
     public function index(): View
     {
-        $animes = Type::where('name', 'TV')->firstOrFail()->animes()->latest()->paginate(10);
+        $animes = Anime::latest()->paginate(10);
         $genres = Genre::genre()->get();
         return view("pages.animes.index", compact(["animes", "genres"]));
     }
     public function movie(): View
     {
+        $name = 'Movie Anime';
         $animes = Type::where('name', 'Movie')->firstOrFail()->animes()->latest()->paginate(10);
         $genres = Genre::genre()->get();
-        return view("pages.animes.index", compact(["animes", "genres"]));
+        return view("pages.animes.index", compact(["animes", "genres", 'name']));
     }
     public function show(string $slug): View
     {
