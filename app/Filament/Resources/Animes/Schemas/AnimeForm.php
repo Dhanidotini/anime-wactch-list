@@ -70,7 +70,8 @@ class AnimeForm
                     ->relationship('type', 'name')
                     ->preload()
                     ->createOptionModalHeading('Create type of anime')
-                    ->createOptionForm([CreateTitleSlugForm::schema('name')]),
+                    ->createOptionForm([CreateTitleSlugForm::schema('name')])
+                    ->editOptionForm([CreateTitleSlugForm::schema('name')]),
                 Select::make('source')
                     ->relationship('source', 'name')
                     ->preload()

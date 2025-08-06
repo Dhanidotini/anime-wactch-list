@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anime;
+use App\Models\Animes\Type;
 use App\Models\Animes\Genre;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $animes = Anime::with(['genres'])->latest()->paginate(6);
+        // $animes = Anime::where('')->with(['genres'])->latest()->paginate(6);
+        $tvAnimes = Type::where('name', 'TV')
+            ->firstOrFail()
+            ->animes()
+            ->latest()
+            ->paginate(5);
+        $movieAnimes = Type::where('name', 'Movie')
+            ->firstOrFail()
+            ->animes()
+            ->latest()
+            ->paginate(5);
         $genres = Genre::genre()->get();
-        return view('pages.home', compact(['animes', 'genres']));
+        // return dd($animes);
+        return view('pages.home', compact(['tvAnimes', 'movieAnimes', 'genres']));
     }
 }

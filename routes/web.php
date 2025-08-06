@@ -4,10 +4,6 @@ use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\GenreController;
-use App\Http\Controllers\StudioController;
-use App\Models\Anime;
-use App\Enums\GenreType;
-use App\Models\Animes\Company;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
