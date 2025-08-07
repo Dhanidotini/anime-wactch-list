@@ -10,8 +10,7 @@
                 <h2 class="mx-2 font-bold text-md">{{ str($company->name . ' ' . 'Anime')->plural() }}</h2>
                 <hr>
             </div>
-            <div class="mx-2 grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-1 my-5">
-                {{-- @dd($company->allAnimes()) --}}
+            <div class="mx-2 grid grid-cols-3 gap-2.5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-1 my-5">
                 @foreach ($company->allAnimes()->get() as $item)
                     <x-partials.animes :$item />
                 @endforeach

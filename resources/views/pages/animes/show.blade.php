@@ -142,60 +142,60 @@
                                     @endforelse
                                 </td>
                             </tr>
-                            @isset($anime->explicits)
-                                <tr>
-                                    <th>Explicits</th>
-                                    <td>
-                                        @foreach ($anime->explicits as $item)
-                                            {{ $item->name }}{{ $loop->last ? '' : ',' }}
-                                        @endforeach
-                                    </td>
-                                </tr>
-                            @endisset
-                        </tbody>
-                    </table>
-                </div>
+                        @empty($anime->explicits)
+                            <tr>
+                                <th>Explicits</th>
+                                <td>
+                                    @foreach ($anime->explicits as $item)
+                                        {{ $item->name }}{{ $loop->last ? '' : ',' }}
+                                    @endforeach
+                                </td>
+                            </tr>
+                        @endempty
+                    </tbody>
+                </table>
             </div>
-            <div class="grow-0">
-                <h4 class="px-2 pt-1 font-bold">Synopsis</h4>
-                <hr>
-                <p class="m-2 font-light text-sm">
-                    {{ $anime->synopsis }}
-                </p>
+        </div>
+        <div class="grow-0">
+            <h4 class="px-2 pt-1 font-bold">Synopsis</h4>
+            <hr>
+            <p class="m-2 font-light text-sm">
+                {{ $anime->synopsis }}
+            </p>
+        </div>
+        <div class="grow-0">
+            <div class="grid grid-cols-5 grid-rows-1 px-3 pt-1">
+                <h4 class="font-bold">Episodes</h4>
+                <h4 class="font-bold col-start-5">Release Date</h4>
             </div>
-            <div class="grow-0">
-                <div class="grid grid-cols-5 grid-rows-1 px-3 pt-1">
-                    <h4 class="font-bold">Episodes</h4>
-                    <h4 class="font-bold col-start-5">Release Date</h4>
-                </div>
-                <hr>
-                <ul>
-                    @forelse ($episodes as $item)
-                        <li class="odd:bg-gray-700 group" key='{{ $loop->index }}'>
-                            <a class="w-full p-3 rounded border border-transparent text-sm grid grid-cols-5 grid-rows-1 group-hover:border-amber-500"
-                                href="{{ route('episode.show', ['anime' => $anime->slug, 'episode' => $item->episode]) }}">
-                                <div class="col-span-3 flex gap-1 items-start">
-                                    @if ($anime->type->name !== 'Movie')
-                                        {{ $item->episode }}.
-                                    @endif
-                                    <span
-                                        class="text-gray-200 group-hover:underline group-hover:text-amber-500">{{ $item->title }}</span>
-                                </div>
-                                <div class="col-start-5 px-1">
-                                    @if ($item->release_date->diffInYears(now()) <= 1)
-                                        {{ $item->release_date->diffForHumans() }}
-                                    @else
-                                        {{ $item->release_date->locale('id')->format('d F Y') }}
-                                    @endif
-                                </div>
-                            </a>
-                        </li>
-                    @empty
-                        <span>No episode yet.</span>
-                    @endforelse
-                </ul>
-            </div>
-        </section>
-        <x-layouts.sections.genres :$genres />
-    </article>
+            <hr>
+            <ul>
+                @forelse ($episodes as $item)
+                    <li class="odd:bg-gray-700 group" key='{{ $loop->index }}'>
+                        <a class="w-full p-3 rounded border border-transparent text-sm grid grid-cols-5 grid-rows-1 group-hover:border-amber-500"
+                            href="{{ route('episode.show', ['anime' => $anime->slug, 'episode' => $item->episode]) }}">
+                            <div class="col-span-3 flex gap-1 items-start">
+                                @if ($anime->type->name !== 'Movie')
+                                    {{ $item->episode }}.
+                                @endif
+                                <span
+                                    class="text-gray-200 group-hover:underline group-hover:text-amber-500">{{ $item->title }}</span>
+                            </div>
+                            <div class="col-start-5 px-1">
+                                @if ($item->release_date->diffInYears(now()) <= 1)
+                                    {{ $item->release_date->diffForHumans() }}
+                                @else
+                                    {{ $item->release_date->locale('id')->format('d F Y') }}
+                                @endif
+                            </div>
+                        </a>
+                    </li>
+                @empty
+                    <span>No episode yet.</span>
+                @endforelse
+            </ul>
+        </div>
+    </section>
+    <x-layouts.sections.genres :$genres />
+</article>
 </x-layouts.app>
