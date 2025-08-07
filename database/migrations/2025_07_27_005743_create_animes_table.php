@@ -30,6 +30,8 @@ return new class extends Migration {
             $table->foreignId('type_id')->nullable();
             $table->foreignId('status_id')->nullable();
             $table->foreignId('source_id')->nullable();
+            $table->foreignId('user_id')->nullable()
+                ->constrained();
         });
     }
 
