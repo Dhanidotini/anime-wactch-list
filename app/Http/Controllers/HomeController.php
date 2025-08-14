@@ -14,19 +14,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $animes = Anime::where('')->with(['genres'])->latest()->paginate(6);
-        $tvAnimes = Type::where('name', 'TV')
-            ->firstOrFail()
-            ->animes()
-            ->latest()
-            ->paginate(5);
-        $movieAnimes = Type::where('name', 'Movie')
-            ->firstOrFail()
-            ->animes()
-            ->latest()
-            ->paginate(5);
+        try {
+            $tvAnimes = Type::where('name', 'TV')
+                ->first()
+                ->animes()
+                ->latest()
+                ->paginate(5);
+            $movieAnimes = Type::where('name', 'Movie')
+                ->first()
+                ->animes()
+                ->latest()
+                ->paginate(5);
+        } catch (\Throwable $th) {
+            $tvAnimes = [];
+            $movieAnimes = [];
+        }
         $genres = Genre::genre()->get();
-        // return dd($animes);
         return view('pages.home', compact(['tvAnimes', 'movieAnimes', 'genres']));
     }
 }

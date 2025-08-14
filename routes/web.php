@@ -7,10 +7,6 @@ use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
-// Route::get('/', function () {
-//     // return dd();
-//     return view('welcome');
-// });
 
 Route::get("/", [HomeController::class, "index"])->name("home");
 
