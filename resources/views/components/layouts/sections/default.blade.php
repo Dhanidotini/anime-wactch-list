@@ -4,8 +4,10 @@
         <hr>
     </div>
     <div class="mx-2 grid grid-cols-3 gap-2.5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-1 my-5">
-        @foreach ($items as $item)
+        @forelse ($items as $item)
             <x-partials.animes :$item />
-        @endforeach
+        @empty
+            <span>Nothing.</span>
+        @endforelse
     </div>
 </section>
